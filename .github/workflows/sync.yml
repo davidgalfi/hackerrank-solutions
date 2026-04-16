@@ -28,8 +28,8 @@ jobs:
 
       - name: Commit and push
         run: |
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
-          git add solutions/
+          git config user.name "davidgalfi"
+          git config user.email "galfidavid314@gmail.com"
+          git add -A
           git diff --staged --quiet || git commit -m "sync: HackerRank solutions $(date +%F)"
-          git push
+          git push https://davidgalfi:${{ secrets.GH_PAT }}@github.com/davidgalfi/hackerrank-solutions.git
