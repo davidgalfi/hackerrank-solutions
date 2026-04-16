@@ -23,7 +23,10 @@ for sub in data.get("models", []):
 
     detail_url = f"https://www.hackerrank.com/rest/contests/master/submissions/{sub_id}"
     detail = requests.get(detail_url, cookies=cookies, headers=headers).json()
-    code = detail.get("model", {}).get("code", "")
+    model = detail.get("model", {})
+    if not isinstance(model, dict):
+        continue
+    code = model.get("code", "")
 
     filename = f"solutions/{name}.{ext}"
     with open(filename, "w") as f:
