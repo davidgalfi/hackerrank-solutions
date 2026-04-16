@@ -21,7 +21,7 @@ class Result {
 
     public static int birthdayCakeCandles(List<Integer> candles, int n) {
     // Write your code here
-    int count = 1;
+    /*int count = 1;
     int current = candles.get(0);
     for(int i=1;i<n;i++){
         int next = candles.get(i);
@@ -34,7 +34,10 @@ class Result {
         }
     }
     
-    return count;
+    return count;*/
+    
+    int biggest = candles.stream().mapToInt(Integer::intValue).max().getAsInt();
+    return (int) candles.stream().filter(x -> x ==  biggest).count();
 
     }
 
