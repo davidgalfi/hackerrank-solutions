@@ -19,32 +19,16 @@ class Result {
      * The function accepts STRING s as parameter.
      */
      
-     private static final int H = 0;
-     private static final int MIN = 1;
-     private static final int SEC = 2;
 
     public static String timeConversion(String s) {
     // Write your code here
-        String raw_time = s.substring(0, s.length() - 2);
-        String meridiem = s.substring(s.length() - 2);
-        String[] time = raw_time.split(":", 3);
+        String m = s.substring(s.length() - 2);
+        String[] t = s.substring(0, s.length() - 2).split(":");
+        int h = Integer.parseInt(t[0]);
         
-        for(int i=0;i<4;i++){
-            int h = Integer.parseInt(time[H]);
-            if(meridiem.equals("AM")){
-                if(h >= 12){
-                    h -= 12;
-                    time[H] = String.valueOf("0" + h);
-                }
-            } else {
-                if(h < 12){
-                    h += 12;
-                    time[H] = String.valueOf(h);
-                }
-            }
-        }
+        h = m.equals("AM") ? h % 12 : h % 12 + 12;
         
-        return time[H] + ":" + time[MIN] + ":" + time[SEC];
+        return String.format("%02d:%s:%s", h, t[1], t[2]);
     }
 
 }
